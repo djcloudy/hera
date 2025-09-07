@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hera Dashboard</title>
+</head>
+<body>
+  <h1>Hera - Server Updates</h1>
+  <table border="1" cellpadding="4" cellspacing="0">
+    <tr>
+      <th>Host</th>
+      <th>Pending Updates</th>
+      <th>Packages</th>
+      <th>Actions</th>
+    </tr>
+    {% for status in statuses %}
+    <tr>
+      <td>{{ status.host }}</td>
+      <td>{{ status.pending }}</td>
+      <td>{{ status.packages | join(', ') }}</td>
+      <td><a href="{{ url_for('apply', host=status.host) }}">Apply Updates</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
